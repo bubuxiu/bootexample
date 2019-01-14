@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.buxiu.bootexample.mapper.UserMapper">
+
+    <sql id="selectSQL">
+        a.userid, a.email, a.username, a.gender, a.password, a.mobileno, a.status, a.registertime, a.logintime, 
+        a.loginip, a.loginstatus
+    </sql>
+
+    <sql id="whereSQL">
+        where 1=1
+        <if test="userid != null ">
+            <![CDATA[
+                and a.userid = #{userid}
+            ]]>
+        </if>
+        <if test="email != null ">
+            <![CDATA[
+                and a.email = #{email}
+            ]]>
+        </if>
+        <if test="username != null ">
+            <![CDATA[
+                and a.username = #{username}
+            ]]>
+        </if>
+        <if test="gender != null ">
+            <![CDATA[
+                and a.gender = #{gender}
+            ]]>
+        </if>
+        <if test="password != null ">
+            <![CDATA[
+                and a.password = #{password}
+            ]]>
+        </if>
+        <if test="mobileno != null ">
+            <![CDATA[
+                and a.mobileno = #{mobileno}
+            ]]>
+        </if>
+        <if test="status != null ">
+            <![CDATA[
+                and a.status = #{status}
+            ]]>
+        </if>
+        <if test="registertime != null ">
+            <![CDATA[
+                and a.registertime = #{registertime}
+            ]]>
+        </if>
+        <if test="logintime != null ">
+            <![CDATA[
+                and a.logintime = #{logintime}
+            ]]>
+        </if>
+        <if test="loginip != null ">
+            <![CDATA[
+                and a.loginip = #{loginip}
+            ]]>
+        </if>
+        <if test="loginstatus != null ">
+            <![CDATA[
+                and a.loginstatus = #{loginstatus}
+            ]]>
+        </if>
+    </sql>
+
+    <select id="countUsers" resultType="int" parameterType="UserPo">
+        select
+            count(8)
+        from buxiu_user a
+        <include refid="whereSQL" />
+        <if test="term != null and '' != term">
+            <![CDATA[
+                and (a.email like concat(concat('%', #{term}),'%')
+                or a.username like concat(concat('%', #{term}),'%')
+                or a.mobileno like concat(concat('%', #{term}),'%'))
+            ]]>
+        </if>
+    </select>
+    <select id="findUsersByPage" resultType="UserPo" parameterType="UserPo">
+        select
+            <include refid="selectSQL" />
+        from buxiu_user a
+        <include refid="whereSQL" />
+        <if test="term != null and '' != term">
+            <![CDATA[
+                and (a.email like concat(concat('%', #{term}),'%')
+                or a.username like concat(concat('%', #{term}),'%')
+                or a.mobileno like concat(concat('%', #{term}),'%'))
+            ]]>
+        </if>
+        <choose>
+            <when test="sortord != null and '' != sortord">
+                order by a.${sortord}
+            </when>
+            <otherwise>
+                order by a.userid desc
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getUserById" resultType="UserPo" parameterType="Integer">
+        select
+            <include refid="selectSQL" />
+        from buxiu_user a
+        where userid = #{userid}
+    </select>
+    <select id="getUserEx" resultType="UserPo" parameterType="UserPo">
+        select
+            <include refid="selectSQL" />
+        from buxiu_user a
+        <include refid="whereSQL" />
+        limit 0, 1
+    </select>
+    <insert id="addUser" parameterType="UserPo">
+        insert into buxiu_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null ">userid,</if>
+            <if test="email != null ">email,</if>
+            <if test="username != null ">username,</if>
+            <if test="gender != null ">gender,</if>
+            <if test="password != null ">password,</if>
+            <if test="mobileno != null ">mobileno,</if>
+            <if test="status != null ">status,</if>
+            <if test="registertime != null ">registertime,</if>
+            <if test="logintime != null ">logintime,</if>
+            <if test="loginip != null ">loginip,</if>
+            <if test="loginstatus != null ">loginstatus,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null ">#{userid,jdbcType=INTEGER},</if>
+            <if test="email != null ">#{email,jdbcType=VARCHAR},</if>
+            <if test="username != null ">#{username,jdbcType=VARCHAR},</if>
+            <if test="gender != null ">#{gender,jdbcType=INTEGER},</if>
+            <if test="password != null ">#{password,jdbcType=VARCHAR},</if>
+            <if test="mobileno != null ">#{mobileno,jdbcType=VARCHAR},</if>
+            <if test="status != null ">#{status,jdbcType=INTEGER},</if>
+            <if test="registertime != null ">#{registertime,jdbcType=VARCHAR},</if>
+            <if test="logintime != null ">#{logintime,jdbcType=VARCHAR},</if>
+            <if test="loginip != null ">#{loginip,jdbcType=VARCHAR},</if>
+            <if test="loginstatus != null ">#{loginstatus,jdbcType=INTEGER},</if>
+        </trim>
+        <selectKey keyProperty="userid" resultType="Integer" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <update id="updateUser" parameterType="UserPo">
+        update buxiu_user
+        <trim prefix="set" suffixOverrides="," suffix=" where userid = #{userid} ">
+            <if test="userid != null">
+                <![CDATA[
+                    userid = #{userid,jdbcType=INTEGER},
+                ]]>
+            </if>
+            <if test="email != null">
+                <![CDATA[
+                    email = #{email,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="username != null">
+                <![CDATA[
+                    username = #{username,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="gender != null">
+                <![CDATA[
+                    gender = #{gender,jdbcType=INTEGER},
+                ]]>
+            </if>
+            <if test="password != null">
+                <![CDATA[
+                    password = #{password,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="mobileno != null">
+                <![CDATA[
+                    mobileno = #{mobileno,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="status != null">
+                <![CDATA[
+                    status = #{status,jdbcType=INTEGER},
+                ]]>
+            </if>
+            <if test="registertime != null">
+                <![CDATA[
+                    registertime = #{registertime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="logintime != null">
+                <![CDATA[
+                    logintime = #{logintime,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginip != null">
+                <![CDATA[
+                    loginip = #{loginip,jdbcType=VARCHAR},
+                ]]>
+            </if>
+            <if test="loginstatus != null">
+                <![CDATA[
+                    loginstatus = #{loginstatus,jdbcType=INTEGER},
+                ]]>
+            </if>
+        </trim>
+    </update>
+    <delete id="deleteUserById" parameterType="Integer">
+        delete from buxiu_user where userid = #{userid}
+    </delete>
+    <delete id="deleteUserEx" parameterType="UserPo">
+        delete from buxiu_user
+        <include refid="whereSQL" />
+    </delete>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 禁用缓存，默认是true -->
+		<setting name="cacheEnabled" value="false" />
+		<!-- 配置默认的执行器，默认是SIMPLE -->
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<!-- JDBC type for null values，默认是OTHER -->
+		<setting name="jdbcTypeForNull" value="OTHER" />
+		<!-- <setting name="logImpl" value="LOG4J"/>   -->
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
+	</settings>
+	<plugins>
+       <plugin interceptor="com.buxiu.bootexample.interceptor.PageInterceptor">
+           <property name="databaseType" value="Mysql"/>
+       </plugin>
+    </plugins> 
+	 
+</configuration>

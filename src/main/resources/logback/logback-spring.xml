@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<configuration debug="false">  
+    <contextName>buxiu</contextName>  
+    <property name="path" value="/Users/bubuxiu/logs"></property>  
+    
+      
+    <!-- 控制台输出 -->  
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">  
+        <encoder>  
+            <pattern>  
+                <!-- 如果要实现在日志里面输出IP等客户端信息 可以写 一个 Filter 过滤器将 ip 等值放到到MDC里面（MDC.put） %X{ip}就是从MDC里面获取key是ip的值 -->  
+                <!-- 服务器运行时间：%r 日志级别:%p 时间:%d %n 日志位置:%logger %L %m  %xEx%n -->  
+                [%-5level] %d{HH:mm:ss.SSS} [%thread] [%X{req.host}:%X{req.uri}] %logger{5} - %msg%n
+            </pattern>  
+        </encoder>  
+    </appender>  
+  
+    <!-- 输出到文件 -->  
+    <appender name="DEBUG_FILE"  
+        class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>DEBUG</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+        </filter>  
+        <file>  
+            ${path}/debug.log  
+        </file> 
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+		 	<fileNamePattern>${path}/debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<minIndex>1</minIndex>
+		  	<maxIndex>5</maxIndex>
+	    </rollingPolicy>
+    		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+	      	<maxFileSize>5MB</maxFileSize>
+	    </triggeringPolicy>
+	    
+        <encoder>  
+            <!-- 格式化输出 -->  
+            <pattern>  
+                [%-5level] %d{HH:mm:ss.SSS} [%thread] [%X{req.host}:%X{req.uri}] %logger{5} - %msg%n
+            </pattern>  
+        </encoder>  
+    </appender>  
+    <!-- 输出到文件 -->  
+    <appender name="INFO_FILE"  
+        class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>INFO</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+        </filter>  
+        <file>  
+            ${path}/info.log  
+        </file>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <fileNamePattern>${path}/info.log.%d{yyyy-MM-dd}.%i.log.zip  
+            </fileNamePattern>  
+            <maxHistory>7</maxHistory>  
+            <timeBasedFileNamingAndTriggeringPolicy  
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+                <maxFileSize>2MB</maxFileSize>  
+            </timeBasedFileNamingAndTriggeringPolicy>  
+        </rollingPolicy>  
+        <encoder>  
+            <pattern>  
+                [%-5level] %d{HH:mm:ss.SSS} [%thread] [%X{req.host}:%X{req.uri}] %logger{5} - %msg%n 
+            </pattern>  
+        </encoder>  
+    </appender>  
+    <appender name="WARN_FILE"  
+        class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>WARN</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+        </filter>  
+        <file>  
+            ${path}/warn.log  
+        </file>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <fileNamePattern>${path}/warn.log.%d{yyyy-MM-dd}.%i.log.zip  
+            </fileNamePattern>  
+            <maxHistory>7</maxHistory>  
+            <timeBasedFileNamingAndTriggeringPolicy  
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+                <maxFileSize>2MB</maxFileSize>  
+            </timeBasedFileNamingAndTriggeringPolicy>  
+        </rollingPolicy>  
+        <encoder>  
+            <pattern>  
+                [%-5level] %d{HH:mm:ss.SSS} [%thread] [%X{req.host}:%X{req.uri}] %logger{5} - %msg%n
+            </pattern>  
+        </encoder>  
+    </appender>  
+    <appender name="ERROR_FILE"  
+        class="ch.qos.logback.core.rolling.RollingFileAppender">  
+         <filter class="ch.qos.logback.classic.filter.LevelFilter">   
+            <level>ERROR</level>   
+            <onMatch>ACCEPT</onMatch> 
+            <onMismatch>DENY</onMismatch>   
+         </filter>  
+        <file>  
+            ${path}/error.log  
+        </file>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <fileNamePattern>${path}/error.log.%d{yyyy-MM-dd}.%i.log.zip  
+            </fileNamePattern>  
+            <maxHistory>7</maxHistory>  
+            <timeBasedFileNamingAndTriggeringPolicy  
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+                <maxFileSize>2MB</maxFileSize>  
+            </timeBasedFileNamingAndTriggeringPolicy>  
+        </rollingPolicy>  
+        <encoder>  
+            <pattern>  
+                [%-5level] %d{HH:mm:ss.SSS} [%thread] [%X{req.host}:%X{req.uri}] %logger{5} - %msg%n 
+            </pattern>  
+        </encoder>  
+    </appender>  
+      
+    <logger name="com.gargoylesoftware.htmlunit" level="ERROR" additivity="false" />  
+      
+    <!-- logs.configuration 报下面所有的类 的消息都打印到控制台 additivity 表示不继承父亲 当additivity=true   
+        是会继承他父元素的等级，包括root 节点配置的所有输入方式 additivity=false 只会调用STDOUT(控制台方式输出) <logger   
+        name="logs.configuration" additivity="false"> <appender-ref ref="STDOUT"   
+        /> </logger> -->  
+    <!-- 最高级别配置 不会继承其他输出，配置的 logger 会对root进行继承 除非设置additivity=false -->  
+    <root level="INFO">  
+        <appender-ref ref="STDOUT" />  
+        <!-- <appender-ref ref="DEBUG_FILE" /> -->  
+        <appender-ref ref="INFO_FILE" />  
+        <appender-ref ref="WARN_FILE" />  
+        <appender-ref ref="ERROR_FILE" />  
+    </root>  
+</configuration>  
