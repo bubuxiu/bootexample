@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -55,114 +56,156 @@ public class SpringUI extends JFrame {
 
 		setResizable(false);
 
-		setTitle("Zooooo");
+		setTitle("Hellodev Generator");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-		setBounds(100, 100, 484, 324);
+		setBounds(100, 100, 800, 600);
 
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-
-		txtLocalhost = new JTextField();
-		txtLocalhost.setText("localhost");
-		txtLocalhost.setBounds(146, 10, 147, 21);
-		panel.add(txtLocalhost);
-		txtLocalhost.setColumns(10);
-
-		JLabel lblIp = new JLabel("IP:");
-		lblIp.setBounds(80, 13, 30, 15);
+		
+		// 布局变量
+		int x_lable_start = 150; // x轴起始位置
+		int x_input_start = 220; // x轴起始位置
+		int y_start = 30; // y轴起始位置
+		int y_step = 50; // y轴行间距
+		int input_height = 36;
+		int line_number = 0;
+		
+		JLabel lableTitle = new JLabel("Hellodev Code Generator");
+		lableTitle.setBounds(x_lable_start+100, 20, 500, input_height); 
+		lableTitle.setFont(new Font("Serif", Font.BOLD, 24)); 
+		panel.add(lableTitle);
+		
+		// line 1
+		JLabel lblIp = new JLabel("IP：");
+		lblIp.setBounds(x_lable_start, y_start+ y_step*(line_number+1), 60, input_height);
 		panel.add(lblIp);
-
-		JLabel label = new JLabel("数据库:");
-		label.setBounds(80, 42, 54, 15);
+		
+		textFieldDBhost = new JTextField();
+		textFieldDBhost.setText("localhost"); 
+		textFieldDBhost.setBounds(x_input_start, y_start+ y_step*(line_number+1), 300, input_height);
+		panel.add(textFieldDBhost);
+		textFieldDBhost.setColumns(10);  
+		JLabel lblIp_2 = new JLabel("* 数据库地址");
+		lblIp_2.setForeground(Color.RED);
+		lblIp_2.setBounds(x_input_start+330, y_start + y_step*(line_number+1), 300, input_height);
+		panel.add(lblIp_2);
+		
+		// line 2
+		JLabel label = new JLabel("数据库：");
+		label.setBounds(x_lable_start, y_start + y_step*(line_number+2), 60, input_height);
 		panel.add(label);
 
-		textField = new JTextField();
-		textField.setBounds(146, 39, 147, 21);
-		panel.add(textField);
-		textField.setColumns(10);
-
-		JLabel label_1 = new JLabel("表名:");
-		label_1.setBounds(80, 127, 54, 15);
-		panel.add(label_1);
-
-		textField_1 = new JTextField();
-		textField_1.setBounds(146, 124, 147, 21);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
-
-		JLabel label_2 = new JLabel("包名:");
-		label_2.setBounds(79, 156, 54, 15);
-		panel.add(label_2);
-
-		txtComyourcom = new JTextField();
-		txtComyourcom.setText("com.buxiu.example");
-		txtComyourcom.setBounds(146, 155, 147, 21);
-		panel.add(txtComyourcom);
-		txtComyourcom.setColumns(10);
-
-		JLabel lblNewLabel = new JLabel("输出目录：");
-		lblNewLabel.setBounds(80, 190, 65, 15);
-		panel.add(lblNewLabel);
-
-		textField_3 = new JTextField();
-		textField_3.setBounds(146, 186, 147, 21);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
-
-		checkBox = new JCheckBox("生成包结构目录");
-		checkBox.setSelected(true);
-		checkBox.setBounds(145, 213, 147, 23);
-		panel.add(checkBox);
-
-		JLabel lblNewLabel_1 = new JLabel("可以指定表名，也可以不指定");
-		lblNewLabel_1.setBounds(303, 127, 176, 15);
-		panel.add(lblNewLabel_1);
-
+		textFieldDBname = new JTextField();
+		textFieldDBname.setBounds(x_input_start, y_start + y_step*(line_number+2), 300, input_height);
+		panel.add(textFieldDBname);
+		textFieldDBname.setColumns(10); 
 		JLabel lblNewLabel_2 = new JLabel("* 数据库名");
 		lblNewLabel_2.setForeground(Color.RED);
-		lblNewLabel_2.setBounds(303, 42, 66, 15);
+		lblNewLabel_2.setBounds(x_input_start+330, y_start + y_step*(line_number+2), 300, input_height);
 		panel.add(lblNewLabel_2);
+		
+		// line 3
+		JLabel label_3 = new JLabel("用户名：");
+		label_3.setBounds(x_lable_start, y_start + y_step*(line_number+3), 60, input_height);
+		panel.add(label_3);
+
+		textFieldUsername = new JTextField();
+		textFieldUsername.setText("root");
+		textFieldUsername.setBounds(x_input_start, y_start + y_step*(line_number+3), 300, input_height);
+		panel.add(textFieldUsername);
+		textFieldUsername.setColumns(10);
+		
+		
+		JLabel lblUsername_2 = new JLabel("* 数据库连接用户名");
+		lblUsername_2.setForeground(Color.RED);
+		lblUsername_2.setBounds(x_input_start+330, y_start + y_step*(line_number+3), 300, input_height);
+		panel.add(lblUsername_2);
+		
+		// line 4 
+		JLabel labelPasswd = new JLabel("密码：");
+		labelPasswd.setBounds(x_lable_start, y_start + y_step*(line_number+4), 60, input_height);
+		panel.add(labelPasswd);
+
+		textFieldPasswd = new JTextField();
+		textFieldPasswd.setText("123456");
+		textFieldPasswd.setBounds(x_input_start, y_start + y_step*(line_number+4), 300, input_height);
+		panel.add(textFieldPasswd);
+		textFieldPasswd.setColumns(10);   
+		JLabel labelPasswd_2 = new JLabel("* 数据库连接密码");
+		labelPasswd_2.setForeground(Color.RED);
+		labelPasswd_2.setBounds(x_input_start+330, y_start + y_step*(line_number+4), 300, input_height);
+		panel.add(labelPasswd_2);
+		
+		// line 5
+		JLabel label_1 = new JLabel("表名：");
+		label_1.setBounds(x_lable_start, y_start + y_step*(line_number+5), 60, input_height);
+		panel.add(label_1);
+
+		textFieldTablename = new JTextField();
+		textFieldTablename.setBounds(x_input_start, y_start + y_step*(line_number+5), 300, input_height);
+		panel.add(textFieldTablename);
+		textFieldTablename.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("* 指定表名");
+		lblNewLabel_1.setForeground(Color.RED);
+		lblNewLabel_1.setBounds(x_input_start+330, y_start + y_step*(line_number+5), 150, input_height);
+		panel.add(lblNewLabel_1);
+
+		// line 6
+		JLabel label_2 = new JLabel("包名：");
+		label_2.setBounds(x_lable_start, y_start + y_step*(line_number+6), 60, input_height);
+		panel.add(label_2);
+
+		textFieldPackagename = new JTextField();
+		textFieldPackagename.setText("com.buxiu.example");
+		textFieldPackagename.setBounds(x_input_start, y_start + y_step*(line_number+6), 300, input_height);
+		panel.add(textFieldPackagename);
+		textFieldPackagename.setColumns(10);
 
 		JLabel lblNewLabel_3 = new JLabel("* 包结构");
 		lblNewLabel_3.setForeground(Color.RED);
-		lblNewLabel_3.setBounds(303, 158, 79, 15);
+		lblNewLabel_3.setBounds(x_input_start+330, y_start + y_step*(line_number+6), 300, input_height);
 		panel.add(lblNewLabel_3);
+		
+		// line 7
+		JLabel lblNewLabel = new JLabel("输出目录：");
+		lblNewLabel.setBounds(x_lable_start, y_start + y_step*(line_number+7), 70, input_height);
+		panel.add(lblNewLabel);
 
-		JButton button = new JButton("执行");
+		textFieldDestdir = new JTextField();
+		textFieldDestdir.setBounds(x_input_start, y_start + y_step*(line_number+7), 500, input_height);
+		panel.add(textFieldDestdir);
+		textFieldDestdir.setColumns(10);
+		
+		// line 8
+		checkBox = new JCheckBox("生成包结构目录");
+		checkBox.setSelected(true);
+		checkBox.setBounds(x_lable_start, y_start + y_step*(line_number+8), 160, input_height);
+		panel.add(checkBox);
+		
+		// line 9
+		JButton button = new JButton("开始生成代码");
+		button.setBounds(x_lable_start+200, y_start + y_step*(line_number+9), 150, input_height);
+		button.setFont(new Font("Serif", Font.BOLD, 15)); 
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				go();
 			}
-		});
-		button.setBounds(145, 242, 93, 23);
+		}); 
 		panel.add(button);
 
-		textField_4 = new JTextField();
-		textField_4.setText("123456");
-		textField_4.setBounds(145, 93, 147, 21);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
-
-		txtRoot = new JTextField();
-		txtRoot.setText("root");
-		txtRoot.setBounds(145, 66, 148, 21);
-		panel.add(txtRoot);
-		txtRoot.setColumns(10);
-
-		JLabel label_3 = new JLabel("用户名:");
-		label_3.setBounds(80, 69, 54, 15);
-		panel.add(label_3);
-
-		JLabel label_4 = new JLabel("密码:");
-		label_4.setBounds(80, 96, 54, 15);
-		panel.add(label_4);
-
-		lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setForeground(Color.RED);
-		lblNewLabel_4.setBounds(248, 242, 204, 23);
-		panel.add(lblNewLabel_4);
+		 
+		JLabel lableBottom = new JLabel("如有意见，请反馈给我~ @bubuxiu@gmail.com");
+		lableBottom.setBounds(x_lable_start+350, y_start+y_step*(line_number+10), 500, input_height); 
+		panel.add(lableBottom);
+		
+//		lblNewLabel_4 = new JLabel("");
+//		lblNewLabel_4.setForeground(Color.RED);
+//		lblNewLabel_4.setBounds(248, 242, 204, 23);
+//		panel.add(lblNewLabel_4);
 
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -177,13 +220,13 @@ public class SpringUI extends JFrame {
 	}
 
 	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	private JTextField txtLocalhost;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField txtComyourcom;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField txtRoot;
+	private JTextField textFieldDBhost;
+	private JTextField textFieldDBname;
+	private JTextField textFieldTablename;
+	private JTextField textFieldPackagename;
+	private JTextField textFieldDestdir;
+	private JTextField textFieldPasswd;
+	private JTextField textFieldUsername;
 
 	
 
@@ -211,23 +254,23 @@ public class SpringUI extends JFrame {
 	}
 
 	public void setUIVal() {
-		txtLocalhost.setText(p.getProperty("host", "127.0.0.1"));
-		textField.setText(p.getProperty("database", "bubuxiu"));
-		txtRoot.setText(p.getProperty("user", "root"));
-		textField_4.setText(p.getProperty("pass", "root"));
-		txtComyourcom.setText(p.getProperty("packname", "org.buxiu.bugonline"));
-		textField_3.setText(p.getProperty("dirstr", "/Users/bubuxiu/git/bootexample/src"));
-		textField_1.setText(p.getProperty("tablename", ""));
+		textFieldDBhost.setText(p.getProperty("host", "127.0.0.1"));
+		textFieldDBname.setText(p.getProperty("database", "bubuxiu"));
+		textFieldUsername.setText(p.getProperty("user", "root"));
+		textFieldPasswd.setText(p.getProperty("pass", "root"));
+		textFieldPackagename.setText(p.getProperty("packname", "org.buxiu.bugonline"));
+		textFieldDestdir.setText(p.getProperty("dirstr", "/Users/bubuxiu/git/bootexample/src"));
+		textFieldTablename.setText(p.getProperty("tablename", ""));
 	}
 
 	private void saveconfig() {
-		String host = txtLocalhost.getText();
-		String database = textField.getText();
-		String user = txtRoot.getText();
-		String pass = textField_4.getText();
-		String packname = txtComyourcom.getText();
-		String dirstr = textField_3.getText();// 空表示当前目录
-		String tablename = textField_1.getText();
+		String host = textFieldDBhost.getText();
+		String database = textFieldDBname.getText();
+		String user = textFieldUsername.getText();
+		String pass = textFieldPasswd.getText();
+		String packname = textFieldPackagename.getText();
+		String dirstr = textFieldDestdir.getText();// 空表示当前目录
+		String tablename = textFieldTablename.getText();
 
 		p.setProperty("host", host);
 		p.setProperty("database", database);
@@ -256,21 +299,21 @@ public class SpringUI extends JFrame {
 	}
 
 	public void go() {
-		String host = txtLocalhost.getText();
-		String database = textField.getText();
+		String host = textFieldDBhost.getText();
+		String database = textFieldDBname.getText();
 
 		if (database.length() == 0) {
 			setTips("数据库名必填");
 			return;
 		}
 
-		String user = txtRoot.getText();
-		String pass = textField_4.getText();
-		String packname = txtComyourcom.getText();
-		String dirstr = textField_3.getText();// 空表示当前目录
-		String tablename = textField_1.getText();
+		String user = textFieldUsername.getText();
+		String pass = textFieldPasswd.getText();
+		String packname = textFieldPackagename.getText();
+		String dirstr = textFieldDestdir.getText();// 空表示当前目录
+		String tablename = textFieldTablename.getText();
 		boolean createPackage = checkBox.getSelectedObjects() != null;
-		System.out.println(createPackage);
+//		System.out.println(createPackage);
 		if (dirstr != null && !dirstr.isEmpty()) {
 			if (!dirstr.endsWith("/")) {
 				dirstr += "/";
@@ -312,6 +355,8 @@ public class SpringUI extends JFrame {
 				writefile(servicedir, table.getSimplename()+"ServiceImpl.java", SpringZoo.generateServiceImpl(table));
 	
 				writefile(controllerdir, table.getSimplename()+"Controller.java", SpringZoo.generateController(table));
+			}else {
+				System.out.println("表注释包含NG字符串，不生成此表的代码");
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

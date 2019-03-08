@@ -38,25 +38,25 @@ public class BizCache {
 
     // 获取当前登录用户ID
     public int getUserid() {
-        TokenServiceImpl userServ = SpringContextUtil.getBean("currentUserService", TokenServiceImpl.class);
+        TokenServiceImpl userServ = SpringContextUtil.getBean("tokenService", TokenServiceImpl.class);
         return userServ.getUserId();
     }
 
     public String getLoginip() {
-        TokenServiceImpl userServ = SpringContextUtil.getBean("currentUserService", TokenServiceImpl.class);
+        TokenServiceImpl userServ = SpringContextUtil.getBean("tokenService", TokenServiceImpl.class);
         return userServ.getRemoteIp();
     }
 
     // 获取当前登录用户名
     public String getUserName() {
-        TokenServiceImpl userServ = SpringContextUtil.getBean("currentUserService",
+        TokenServiceImpl userServ = SpringContextUtil.getBean("tokenService",
                 TokenServiceImpl.class);
         return userServ.getUserName();
     }
 
     // 获取当前登录用户类型
     public Integer getUserType() {
-        TokenServiceImpl userServ = SpringContextUtil.getBean("currentUserService", TokenServiceImpl.class);
+        TokenServiceImpl userServ = SpringContextUtil.getBean("tokenService", TokenServiceImpl.class);
         return userServ.getUserType();
     }
  
