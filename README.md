@@ -16,7 +16,7 @@ bootexample是一个springboot的代码框架.
 
 * 在工程的根目录下有个/doc/database.sql，这个文件里有个建立用户表的sql语句，打开根据自己的需要进行修改然后执行语句，如果你本地安装了mysql数据库可以在本地执行，或者到安装了mysql的其他服务器上执行.
 * 在Eclipse中启动bootexample服务，通过选中BootexampleApplication.java右键选中run as java application，默认配置application.yml中启动在8081端口.
-* 通过curl或postman等工具，进行接口访问测试，比如：http://localhost:8081/user/list.
+* 通过curl或postman等工具，进行接口访问测试，比如：http://localhost:8081/api/user/list.
 
 如果接口响应提示没有授权token，可以在UserController类上增加 @CheckToken(false) 将接口安全token检查关掉后重新启动工程.
 
