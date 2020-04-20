@@ -28,9 +28,8 @@ bootexample是一个springboot的代码框架.
 * SpringUI.java点右键，run as java application
 * 在弹出的UI界面上，根据提示输入数据库连接相关信息，输入要生成代码的数据库表名，并指定生成代码的路径以及包的名字，如果你打算在bootexample上生成代码进行测试，包名填写：com.buxiu.bootexample，路径填写：xx/bootexample/src/main/java(工程源代码存放的路径)
 
-下面是自动生成代码效果图
+**下面是自动生成代码效果图**
  ![自动生成代码效果图](http://sagedata.cn/img/ps-3-1.6dec80df.jpg)
-
 ## 接口文档自动生成
 
 可以通过 [devmaster](http://www.devmaster.cloud/)创建项目，并获得项目的sdk访问key，然后在bootexample里按照例子调用接口文档自动生成的sdk，自动生成的文档会放到[devmaster](http://www.devmaster.cloud/)上，提供在线的访问服务，也可以对自动生成的接口文档进行手动编辑:
@@ -75,7 +74,7 @@ public class ApidocCmd {
     }
 }
 ```
-下面是自动生成的接口文档格式和效果图
+**下面是自动生成的接口文档格式和效果图**
  ![接口文档效果图](http://sagedata.cn/img/ps-4-1.2df8caef.jpg)
 上面的代码例子，显示如何创建UserController类的接口文档，其中bugonlineappkey是通过上述步骤在[devmaster](http://www.devmaster.cloud/)创建项目申请获得.
 
