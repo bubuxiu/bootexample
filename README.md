@@ -31,7 +31,7 @@ bootexample是一个springboot的代码框架.
 
 ## 接口文档自动生成
 
-可以通过 [devmaster](http://www.devmaster.cn/)创建项目，并获得项目的sdk访问key，然后在bootexample里按照例子调用接口文档自动生成的sdk，自动生成的文档会放到[devmaster](http://www.devmaster.cn/)上，提供在线的访问服务，也可以对自动生成的接口文档进行手动编辑:
+可以通过 [devmaster](http://www.devmaster.cloud/)创建项目，并获得项目的sdk访问key，然后在bootexample里按照例子调用接口文档自动生成的sdk，自动生成的文档会放到[devmaster](http://www.devmaster.cloud/)上，提供在线的访问服务，也可以对自动生成的接口文档进行手动编辑:
 
 ```java
 import java.util.List;
@@ -75,7 +75,7 @@ public class ApidocCmd {
 ```
 下面是自动生成的接口文档格式和效果图
  ![Image text](https://github.com/bubuxiu/bootexample/blob/master/api.jpg)
-上面的代码例子，显示如何创建UserController类的接口文档，其中bugonlineappkey是通过上述步骤在[devmaster](http://www.devmaster.cn/)创建项目申请获得.
+上面的代码例子，显示如何创建UserController类的接口文档，其中bugonlineappkey是通过上述步骤在[devmaster](http://www.devmaster.cloud/)创建项目申请获得.
 
 
 
