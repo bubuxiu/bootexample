@@ -28,6 +28,8 @@ bootexample是一个springboot的代码框架.
 * SpringUI.java点右键，run as java application
 * 在弹出的UI界面上，根据提示输入数据库连接相关信息，输入要生成代码的数据库表名，并指定生成代码的路径以及包的名字，如果你打算在bootexample上生成代码进行测试，包名填写：com.buxiu.bootexample，路径填写：xx/bootexample/src/main/java(工程源代码存放的路径)
 
+下面是自动生成代码效果图
+ ![自动生成代码效果图](http://sagedata.cn/img/ps-3-1.6dec80df.jpg)
 
 ## 接口文档自动生成
 
