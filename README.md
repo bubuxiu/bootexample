@@ -74,7 +74,7 @@ public class ApidocCmd {
 }
 ```
 下面是自动生成的接口文档格式和效果图
- ![Image text](http://sagedata.cn/img/ps-4-1.2df8caef.jpg)
+ ![接口文档效果图](http://sagedata.cn/img/ps-4-1.2df8caef.jpg)
 上面的代码例子，显示如何创建UserController类的接口文档，其中bugonlineappkey是通过上述步骤在[devmaster](http://www.devmaster.cloud/)创建项目申请获得.
 
 
