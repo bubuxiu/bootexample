@@ -55,7 +55,7 @@ public class ApidocCmd {
         // 生成特定的controller接口文档， null表示生成所有接口
         String specialname = "UserController";
         
-        int r = Jdk8Apidoc.init(packagename, sourcedir, "bugonlineappkey"); 
+        int r = Jdk8Apidoc.init(packagename, sourcedir, "appkey"); 
         if(r != 0) { 
             return ;
         }
@@ -68,7 +68,7 @@ public class ApidocCmd {
                     continue;
                 }
             } 
-            // 生成的文档默认上传到阿里云服务器，可以通过访问www.bugonline.cn进行在线访问和修改
+            // 生成的文档默认上传到云协作平台，可以通过访问www.devmaster.cloud进行在线访问和修改
             Jdk8Apidoc.addOneApi(controller);
         }
     }
@@ -76,7 +76,7 @@ public class ApidocCmd {
 ```
 **下面是自动生成的接口文档格式和效果图**
  ![接口文档效果图](http://sagedata.cn/img/ps-4-1.2df8caef.jpg)
-上面的代码例子，显示如何创建UserController类的接口文档，其中bugonlineappkey是通过上述步骤在[devmaster](http://www.devmaster.cloud/)创建项目申请获得.
+上面的代码例子，显示如何创建UserController类的接口文档，其中appkey是通过上述步骤在[devmaster](http://www.devmaster.cloud/)创建项目申请获得.
 
 
 
